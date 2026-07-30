@@ -36,7 +36,7 @@ const leadership: Member[] = [
     role: 'President',
     name: 'Your Name',
     icon: Crown,
-    image: '/images/team/president.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -44,7 +44,7 @@ const leadership: Member[] = [
     role: 'Vice President',
     name: 'Your Name',
     icon: Star,
-    image: '/images/team/vice-president.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
 ];
@@ -55,7 +55,7 @@ const managers: Member[] = [
     role: 'HR Manager',
     name: 'Your Name',
     icon: Users,
-    image: '/images/team/hr-manager.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -63,7 +63,7 @@ const managers: Member[] = [
     role: 'Technical Manager',
     name: 'Your Name',
     icon: Code2,
-    image: '/images/team/technical-manager.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -71,7 +71,7 @@ const managers: Member[] = [
     role: 'Media Manager',
     name: 'Your Name',
     icon: Megaphone,
-    image: '/images/team/media-manager.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -79,7 +79,7 @@ const managers: Member[] = [
     role: 'General Secretary',
     name: 'Your Name',
     icon: FileText,
-    image: '/images/team/general-secretary.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -87,7 +87,7 @@ const managers: Member[] = [
     role: 'Financial Manager',
     name: 'Your Name',
     icon: DollarSign,
-    image: '/images/team/financial-manager.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
   {
@@ -95,7 +95,7 @@ const managers: Member[] = [
     role: 'CP Manager',
     name: 'Your Name',
     icon: Trophy,
-    image: '/images/team/cp-manager.jpg',
+    image: '/images/about-club-photo.png',
     initials: 'YN',
   },
 ];

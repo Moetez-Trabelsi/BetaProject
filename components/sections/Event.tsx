@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const highlights = ['Algorithms', 'Competition', 'National Title'];
 const images = [
-  '/images/loc1.jpg',
-  '/images/loc2.jpg',
-  '/images/loc3.jpg',
-  '/images/loc4.jpg',
-  '/images/loc5.jpg',
+  '/images/league-of-coders-1.jpg',
+  '/images/league-of-coders-2.jpg',
+  '/images/league-of-coders-3.jpg',
+  '/images/league-of-coders-4.jpg',
+  '/images/league-of-coders-5.jpg',
 ];
 const AUTO_PLAY_INTERVAL = 5000;
 

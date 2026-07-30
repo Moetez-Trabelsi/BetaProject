@@ -74,7 +74,7 @@ function GroupPhoto() {
       {/* Photo */}
       <div className="group relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white shadow-xl shadow-blue-900/10">
         <Image
-          src="/images/about-illustration.png"
+          src="/images/about-club-photo.png"
           alt="G2FOSS members at ENIT"
           fill
           sizes="(min-width: 1024px) 560px, 90vw"

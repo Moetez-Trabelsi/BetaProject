@@ -34,7 +34,7 @@ export default function Navbar() {
         {/* Logo (mascot icon – replace with full logo on desktop if available) */}
         <Link href="#home" className="flex items-center gap-2 shrink-0">
           <Image
-            src="/images/log.png"
+            src="/images/g2foss-logo.png"
             alt="G2FOSS"
             width={128}
             height={128}

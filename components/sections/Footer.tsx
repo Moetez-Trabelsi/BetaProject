@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <Link href="#home" className="shrink-0">
             <Image
-              src="/images/log.png"
+              src="/images/g2foss-logo.png"
               alt="G2FOSS"
               width={128}
               height={128}

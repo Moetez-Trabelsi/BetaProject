@@ -67,7 +67,7 @@ function MascotTilt() {
     >
       <img
         ref={imageRef}
-        src="/images/hero-mascot.png"
+        src="/images/g2foss-mascot.png"
         alt="G2FOSS mascot"
         className="h-full w-full object-contain transition-transform duration-300 ease-out"
         style={{
@@ -87,7 +87,7 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       style={{
         minHeight: 'calc(100vh)',
-        backgroundImage: 'url("/images/background-hero.png")',
+        backgroundImage: 'url("/images/hero-background.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

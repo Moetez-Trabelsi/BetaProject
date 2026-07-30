@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-navy: #12378D;
+  --color-navy-light: #2960D7;
+  --color-brand: #2563EB;
+  --color-brand-light: #3B82F6;
+  --color-brand-dark: #1D4ED8;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', sans-serif;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes floatVertical {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typeLine {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: floatVertical var(--float-duration, 6s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+.animate-fade-slide-in {
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease var(--slide-delay, 0s) forwards;
+}
+
+.animate-type-line {
+  opacity: 0;
+  animation: typeLine 0.5s ease var(--type-delay, 0s) forwards;
+}
+
+/* ============================================================
+   Height-based responsive utilities (h-short:)
+   Triggers when viewport height is less than 700px
+   ============================================================ */
+@layer utilities {
+  /* Grid */
+  .h-short\:grid-cols-2 {
+    @media (max-height: 700px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* Gap */
+  .h-short\:gap-10 {
+    @media (max-height: 700px) {
+      gap: 2.5rem;
+    }
+  }
+  
+  /* Alignment */
+  .h-short\:items-center {
+    @media (max-height: 700px) {
+      align-items: center;
+    }
+  }
+  .h-short\:items-start {
+    @media (max-height: 700px) {
+      align-items: flex-start;
+    }
+  }
+  
+  /* Text alignment */
+  .h-short\:text-left {
+    @media (max-height: 700px) {
+      text-align: left;
+    }
+  }
+  
+  /* Margins */
+  .h-short\:mx-0 {
+    @media (max-height: 700px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  .h-short\:mb-6 {
+    @media (max-height: 700px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+  .h-short\:mt-0 {
+    @media (max-height: 700px) {
+      margin-top: 0;
+    }
+  }
+  
+  /* Max width */
+  .h-short\:max-w-none {
+    @media (max-height: 700px) {
+      max-width: none;
+    }
+  }
+  .h-short\:max-w-full {
+    @media (max-height: 700px) {
+      max-width: 100%;
+    }
+  }
+  .h-short\:max-w-6xl {
+    @media (max-height: 700px) {
+      max-width: 72rem;
+    }
+  }
+  
+  /* Padding */
+  .h-short\:px-6 {
+    @media (max-height: 700px) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  .h-short\:py-8 {
+    @media (max-height: 700px) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+  
+  /* Justify */
+  .h-short\:justify-start {
+    @media (max-height: 700px) {
+      justify-content: flex-start;
+    }
+  }
 }

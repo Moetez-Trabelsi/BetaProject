@@ -4,9 +4,7 @@ import Link from 'next/link';
 import { Mail, MapPin } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
-// Brand icons — lucide-react doesn't ship logo/brand marks, so these are
-// small inline SVGs (paths from Simple Icons, MIT licensed). Add or remove
-// entries here as needed; no extra dependency required.
+// Brand icons (unchanged)
 // ---------------------------------------------------------------------------
 type IconProps = { className?: string };
 
@@ -37,94 +35,108 @@ const GithubIcon = ({ className }: IconProps) => (
 // ---------------------------------------------------------------------------
 // Data
 // ---------------------------------------------------------------------------
-const socials: { icon: (props: IconProps) => React.JSX.Element; label: string; href: string }[] = [
+const socials: {
+  icon: (props: IconProps) => React.JSX.Element;
+  label: string;
+  href: string;
+}[] = [
   { icon: FacebookIcon, label: 'Facebook', href: 'https://facebook.com/g2foss' },
   { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/g2foss' },
-  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/g2foss' },
+  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/company/g2foss-enit/' },
   { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/g2foss' },
 ];
 
 // ---------------------------------------------------------------------------
-// Contact section
+// Contact section – refined & balanced
 // ---------------------------------------------------------------------------
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#050B1F] py-24 sm:py-32">
-      {/* Ambient glows — same device as Hero/Event, closing the page on the
-          same visual register it opened with */}
-      <div className="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 right-1/4 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
+    <section
+      id="contact"
+      className="relative overflow-hidden py-24 sm:py-32"
+      style={{ backgroundColor: '#00081a' }}
+    >
+      {/* Top transition – soft fade from Team background (#00091d) */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20"
+        style={{
+          background: 'linear-gradient(to bottom, #00091d 0%, transparent 100%)',
+        }}
+      />
+
+      {/* Ambient glows – placed lower so they aren’t clipped */}
+      <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-blue-600/5 blur-3xl" />
+      <div className="pointer-events-none absolute right-1/4 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-[1540px] px-6 lg:px-12">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-xl text-center">
+          {/* Pill badge – same as other sections */}
           <div
-            className="mb-5 flex items-center justify-center gap-2 animate-fade-slide-in"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-400/15 px-3 py-1.5 text-xs font-semibold text-blue-300 uppercase tracking-wider animate-fade-slide-in"
             style={{ '--slide-delay': '0.05s' } as React.CSSProperties}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-            <span className="font-sans text-xs font-semibold tracking-[0.18em] text-cyan-300">
-              GET IN TOUCH
-            </span>
+            <span className="h-2 w-2 rounded-full bg-blue-400" />
+            Get in touch
           </div>
 
+          {/* Smaller, calmer heading */}
           <h2
-            className="mb-5 font-sans font-bold tracking-[0.02em] text-white animate-fade-slide-in"
+            className="mb-6 font-sans font-bold text-white animate-fade-slide-in"
             style={
               {
-                fontSize: 'clamp(2rem, 1.3rem + 2.6vw, 3.1rem)',
-                lineHeight: '1.15',
+                fontSize: 'clamp(1.8rem, 1.2rem + 2.5vw, 2.5rem)',
+                lineHeight: '1.2',
                 '--slide-delay': '0.1s',
               } as React.CSSProperties
             }
           >
-            Ready to{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-              join us
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Ready to join us?
             </span>
-            ?
           </h2>
 
+          {/* Short subtext */}
           <p
-            className="mb-10 font-sans text-gray-300 animate-fade-slide-in"
+            className="mb-10 font-sans text-slate-400 animate-fade-slide-in"
             style={
               {
-                fontSize: 'clamp(1.05rem, 0.98rem + 0.3vw, 1.15rem)',
-                lineHeight: '1.75',
+                fontSize: 'clamp(1rem, 0.95rem + 0.2vw, 1.1rem)',
+                lineHeight: '1.6',
                 '--slide-delay': '0.15s',
               } as React.CSSProperties
             }
           >
-            Questions about workshops, projects, or the next contest?
-            We&apos;re one message away.
+            Questions about workshops, projects, or the next competition?
+            We’re one message away.
           </p>
 
-          {/* CTAs — same ghost + gradient pair used in the Hero */}
+          {/* Buttons – same size as Hero, stacked nicely */}
           <div
             className="flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-slide-in"
-            style={{ '--slide-delay': '0.2s' } as React.CSSProperties}
+            style={{ '--slide-delay': '0.45s' } as React.CSSProperties}
           >
-            {/* Replace with your real inbox */}
             <a
-              href="mailto:hello@g2foss.org"
-              className="inline-flex items-center gap-2 border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/50 font-semibold px-6 py-2.5 rounded-xl transition-all duration-300"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=enitg2fossclub@gmail.com"
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 font-semibold text-base px-7 py-4 rounded-xl border border-white/20 hover:border-white/30 transition-all duration-500"
             >
-              <Mail size={17} strokeWidth={2} />
+              <Mail size={18} strokeWidth={2} />
               Email us
             </a>
-            {/* Replace href with your membership form (Google Form, Tally, etc.) */}
             <Link
-              href="#"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 group"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScvUaWj3K0v0-nnBd1gLa1WIlwjf2vt6Du8Hum-trjAfMyEdw/closedform"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-base px-7 py-4 rounded-xl shadow-md shadow-black/10 transition-all duration-300 group"
             >
               Apply to join
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5">{'->'}</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                {'->'}
+              </span>
             </Link>
           </div>
 
-          {/* Social links */}
+          {/* Social icons – glass cards, same as member cards */}
           <div
-            className="mt-10 flex items-center justify-center gap-3 animate-fade-slide-in"
-            style={{ '--slide-delay': '0.25s' } as React.CSSProperties}
+            className="mt-12 flex items-center justify-center gap-4 animate-fade-slide-in"
+            style={{ '--slide-delay': '0.55s' } as React.CSSProperties}
           >
             {socials.map(({ icon: Icon, label, href }) => (
               <a
@@ -133,9 +145,9 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                className="group flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.06] to-transparent transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.15] hover:bg-white/[0.08] hover:shadow-[0_8px_24px_-8px_rgba(59,130,246,0.2)] transform-gpu will-change-transform"
               >
-                <Icon className="h-[18px] w-[18px]" />
+                <Icon className="h-5 w-5 text-white/70 transition-colors duration-300 group-hover:text-white" />
               </a>
             ))}
           </div>
@@ -143,10 +155,10 @@ export default function Contact() {
           {/* Location */}
           <div
             className="mt-10 flex items-center justify-center gap-2 animate-fade-slide-in"
-            style={{ '--slide-delay': '0.3s' } as React.CSSProperties}
+            style={{ '--slide-delay': '0.65s' } as React.CSSProperties}
           >
-            <MapPin size={14} strokeWidth={2} className="text-white/40" />
-            <span className="font-sans text-sm text-white/40">ENIT, Tunis, Tunisia</span>
+            <MapPin size={14} strokeWidth={2} className="text-slate-500" />
+            <span className="font-sans text-sm text-slate-500">ENIT, Tunis, Tunisia</span>
           </div>
         </div>
       </div>

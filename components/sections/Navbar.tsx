@@ -16,6 +16,30 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const handleNavClick = (href: string, closeMenu = false) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    const target = document.getElementById(href.slice(1));
+
+    if (!target) {
+      return;
+    }
+
+    window.history.pushState(null, '', href);
+
+    const targetTop = window.scrollY + target.getBoundingClientRect().top;
+    const preferredTopOffset = href === '#home' ? 0 : Math.min(Math.max(window.innerHeight * 0.2, 88), 160);
+
+    window.scrollTo({
+      top: Math.max(targetTop - preferredTopOffset/5, 0),
+      behavior: 'smooth',
+    });
+
+    if (closeMenu) {
+      setMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
     // Set initial scroll state on mount (handles refresh while scrolled)
     setScrolled(window.scrollY > 10);
@@ -35,7 +59,7 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-[1840px] px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link href="#home" className="flex items-center gap-2 shrink-0">
+        <Link href="#home" onClick={handleNavClick('#home')} className="flex items-center gap-2 shrink-0">
           <Image
             src="/images/g2foss-logo.png"
             alt="G2FOSS"
@@ -52,6 +76,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  onClick={handleNavClick(link.href)}
                   className="relative text-[16px] text-white/80 hover:text-white px-1 py-1.5 transition-all duration-300 group"
                 >
                   {link.label}
@@ -65,6 +90,7 @@ export default function Navbar() {
           <div className="shrink-0">
             <Link
               href="#contact"
+              onClick={handleNavClick('#contact')}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center gap-2 group shadow-sm shadow-black/10"
             >
               Join us
@@ -113,7 +139,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={handleNavClick(link.href, true)}
               className="text-sm text-white/80 hover:text-white hover:bg-white/5 px-3 py-2.5 rounded-lg transition-all duration-300"
             >
               {link.label}
@@ -121,8 +147,8 @@ export default function Navbar() {
           ))}
           <div className="pt-2 mt-1 border-t border-white/10">
             <Link
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
+              href="https://docs.google.com/forms/d/e/1FAIpQLScvUaWj3K0v0-nnBd1gLa1WIlwjf2vt6Du8Hum-trjAfMyEdw/closedform"
+              onClick={handleNavClick('https://docs.google.com/forms/d/e/1FAIpQLScvUaWj3K0v0-nnBd1gLa1WIlwjf2vt6Du8Hum-trjAfMyEdw/closedform', true)}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 w-full shadow-sm shadow-black/10"
             >
               Join us <span aria-hidden="true">→</span>

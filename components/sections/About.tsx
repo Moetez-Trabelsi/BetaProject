@@ -127,7 +127,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {cards.map((card, i) => {
             const Icon = card.icon;
             return (
@@ -136,23 +136,30 @@ export default function About() {
                 className="animate-fade-slide-in"
                 style={{ '--slide-delay': `${0.35 + i * 0.08}s` } as React.CSSProperties}
               >
-                <div className="group flex h-full flex-col rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-sm p-8 transition-all duration-300 hover:border-blue-400/50 hover:bg-slate-800/60 hover:shadow-lg hover:shadow-blue-500/10">
+                <div className="group relative flex h-full flex-col rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur-md p-8 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/[0.15] hover:bg-white/[0.08] hover:shadow-[0_8px_32px_-8px_rgba(59,130,246,0.2)] transform-gpu will-change-transform">
+                  {/* Icon */}
                   <div
-                    className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${card.iconBg} ${card.iconText} transition-transform duration-300 group-hover:scale-110`}
+                    className={`mb-6 flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg ${card.iconBg} ${card.iconText}`}
                   >
                     <Icon size={24} strokeWidth={1.75} />
                   </div>
 
-                  <h3 className="mb-3 font-sans text-xl font-bold text-white">
+                  {/* Title & description */}
+                  <h3 className="mb-3 font-sans text-xl font-bold text-white transition-colors duration-300 group-hover:text-slate-100">
                     {card.title}
                   </h3>
-                  <p className="flex-grow font-sans text-sm leading-relaxed text-slate-400">
+                  <p className="flex-grow font-sans text-sm leading-relaxed text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
                     {card.description}
                   </p>
 
+                  {/* Bottom row */}
                   <div className="mt-8 flex items-center justify-between">
-                    <span className={`h-1 w-8 rounded-full ${card.underline}`} />
-                    <span className={`text-3xl font-bold opacity-50 ${card.numberColor}`}>
+                    <span
+                      className={`h-1 w-8 rounded-full transition-all duration-500 ease-out group-hover:w-12 ${card.underline}`}
+                    />
+                    <span
+                      className={`text-3xl font-bold transition-all duration-500 ease-out group-hover:opacity-90 group-hover:scale-105 ${card.numberColor}`}
+                    >
                       {card.step}
                     </span>
                   </div>

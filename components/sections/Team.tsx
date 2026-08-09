@@ -31,18 +31,18 @@ const leadership: Member[] = [
   {
     id: 'president',
     role: 'President',
-    name: 'Your Name',
+    name: 'Dhouha Ben Arab',
     icon: Crown,
     image: '/images/dhouha.jpg',
-    initials: 'YN',
+    initials: 'DA',
   },
   {
     id: 'vice-president',
     role: 'Vice President',
-    name: 'Your Name',
+    name: 'Med Raslen Amdouni',
     icon: Star,
     image: '/images/raslen.jpg',
-    initials: 'YN',
+    initials: 'RA',
   },
 ];
 
@@ -50,50 +50,50 @@ const managers: Member[] = [
   {
     id: 'hr-manager',
     role: 'HR Manager',
-    name: 'Your Name',
+    name: 'Bader Hamdi',
     icon: Users,
     image: '/images/bader.jpg',
-    initials: 'YN',
+    initials: 'BH',
   },
   {
     id: 'technical-manager',
     role: 'Technical Manager',
     name: 'Wissem Toujeni',
     icon: Code2,
-    image: '/images/Wissem.jpg',
-    initials: 'YN',
+    image: '/images/wissem.jpg',
+    initials: 'WT',
   },
   {
     id: 'media-manager',
     role: 'Media Manager',
-    name: 'Your Name',
+    name: 'Zied Ben Hammouda',
     icon: Megaphone,
     image: '/images/zied.jpg',
-    initials: 'YN',
+    initials: 'ZH',
   },
   {
     id: 'general-secretary',
     role: 'General Secretary',
-    name: 'Your Name',
+    name: 'Aicha Bacha',
     icon: FileText,
     image: '/images/aicha.jpg',
-    initials: 'YN',
+    initials: 'AB',
   },
   {
     id: 'financial-manager',
     role: 'Financial Manager',
-    name: 'Your Name',
+    name: 'Mariam Ahmed',
     icon: DollarSign,
     image: '/images/mariem.jpg',
-    initials: 'YN',
+    initials: 'MA',
   },
   {
     id: 'cp-manager',
     role: 'CP Manager',
-    name: 'Your Name',
+    name: 'Med Moetez Trabelsi',
     icon: Trophy,
     image: '/images/moetez.jpg',
-    initials: 'YN',
+    initials: 'MT',
   },
 ];
 
@@ -133,7 +133,7 @@ function MemberPhoto({
           alt={alt}
           fill
           sizes="160px"
-          className="object-cover"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
           onError={() => setFailed(true)}
         />
       ) : (
@@ -143,7 +143,7 @@ function MemberPhoto({
       )}
       {/* Brand accent swoosh */}
       <div
-        className={`absolute -bottom-1 -left-1 rounded-tr-[999px] bg-gradient-to-br from-cyan-400 to-blue-600 ${
+        className={`absolute -bottom-1 -left-1 rounded-tr-[999px] bg-gradient-to-br from-cyan-400 to-blue-600 transition-all duration-500 ease-out group-hover:from-cyan-300 group-hover:to-blue-500 ${
           large ? 'h-11 w-11' : 'h-9 w-9'
         }`}
         aria-hidden="true"
@@ -174,12 +174,15 @@ function MemberCard({
       className="animate-fade-slide-in"
       style={{ '--slide-delay': `${delay}s` } as React.CSSProperties}
     >
-      <div className="group flex h-full items-center gap-5 rounded-3xl border border-slate-700/80 bg-slate-800/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 sm:p-6">
+      <div className="group relative flex h-full items-center gap-5 overflow-hidden rounded-3xl border border-slate-700/80 bg-slate-800/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/15 sm:p-6">
+        {/* Ambient glow — same device as the About cards */}
+        <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-blue-500/0 blur-2xl transition-colors duration-500 group-hover:bg-blue-500/20" />
+
         <MemberPhoto src={member.image} alt={member.name} initials={member.initials} large={large} />
 
-        <div className="min-w-0 flex-1">
+        <div className="relative min-w-0 flex-1">
           <div
-            className={`mb-3 flex items-center justify-center rounded-xl ${accent.bg} ${accent.text} ${
+            className={`mb-3 flex items-center justify-center rounded-xl transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 ${accent.bg} ${accent.text} ${
               large ? 'h-11 w-11' : 'h-10 w-10'
             }`}
           >
@@ -187,14 +190,14 @@ function MemberCard({
           </div>
 
           <h4
-            className={`font-sans font-bold leading-snug text-white ${
+            className={`font-sans font-bold leading-snug text-white transition-colors duration-300 group-hover:text-blue-300 ${
               large ? 'text-xl sm:text-2xl' : 'text-lg'
             }`}
           >
             {member.role}
           </h4>
 
-          <span className="my-2 block h-0.5 w-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
+          <span className="my-2 block h-0.5 w-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-500 ease-out group-hover:w-10" />
 
           <p className="font-sans text-sm text-slate-300">{member.name}</p>
         </div>
@@ -215,13 +218,11 @@ export default function Team() {
         {/* ------------------------------------------------------------- */}
         <div className="mb-14 text-center sm:mb-16">
           <div
-            className="inline-flex items-center gap-2 animate-fade-slide-in"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-400/15 px-3 py-1.5 text-xs font-semibold text-blue-300 uppercase tracking-wider animate-fade-slide-in"
             style={{ '--slide-delay': '0.05s' } as React.CSSProperties}
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-400/15 px-3 py-1.5 text-xs font-semibold text-blue-300 uppercase tracking-wider animate-fade-slide-in" style={{ '--slide-delay': '0.05s' } as React.CSSProperties}>
             <span className="h-2 w-2 rounded-full bg-blue-400" />
-            OUR TEAM 
-          </div>
+            OUR TEAM
           </div>
 
           <h2

@@ -17,6 +17,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // Set initial scroll state on mount (handles refresh while scrolled)
+    setScrolled(window.scrollY > 10);
+
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -30,46 +33,46 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-[1840px] px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Logo (mascot icon – replace with full logo on desktop if available) */}
+      <div className="mx-auto max-w-[1840px] px-6 lg:px-12 h-24 flex items-center justify-between">
+        {/* Logo */}
         <Link href="#home" className="flex items-center gap-2 shrink-0">
           <Image
             src="/images/g2foss-logo.png"
             alt="G2FOSS"
-            width={128}
-            height={128}
+            width={150}
+            height={150}
             priority
           />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
-          <ul className="flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-10">
+          <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="relative text-[16px] text-white/80 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all duration-300 group"
+                  className="relative text-[16px] text-white/80 hover:text-white px-1 py-1.5 transition-all duration-300 group"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full" />
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Join button – desktop */}
+          {/* Join button – desktop (refined) */}
           <div className="shrink-0">
             <Link
               href="#contact"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-base px-6 py-2.5 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 inline-flex items-center gap-2 group"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center gap-2 group shadow-sm shadow-black/10"
             >
               Join us
               <span
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               >
-                {"->"}
+                {'->'}
               </span>
             </Link>
           </div>
@@ -83,11 +86,21 @@ export default function Navbar() {
         >
           {menuOpen ? (
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M4 4l12 12M16 4L4 16"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           ) : (
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M3 5h14M3 10h14M3 15h14"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           )}
         </button>
@@ -110,7 +123,7 @@ export default function Navbar() {
             <Link
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 w-full shadow-lg shadow-cyan-500/20"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 w-full shadow-sm shadow-black/10"
             >
               Join us <span aria-hidden="true">→</span>
             </Link>

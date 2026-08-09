@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const highlights = ['Algorithms', 'Competition', 'National Title'];
+
+// Last 5 event photos
 const images = [
   '/images/league-of-coders-1.jpg',
   '/images/league-of-coders-2.jpg',
@@ -13,140 +13,95 @@ const images = [
   '/images/league-of-coders-4.jpg',
   '/images/league-of-coders-5.jpg',
 ];
-const AUTO_PLAY_INTERVAL = 5000;
 
 export default function EventSection() {
-  const [current, setCurrent] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const goTo = useCallback((index: number) => {
-    setCurrent((index + images.length) % images.length);
-  }, []);
-
-  const next = useCallback(() => goTo(current + 1), [current, goTo]);
-  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
-
-  useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(next, AUTO_PLAY_INTERVAL);
-    return () => clearInterval(timer);
-  }, [isHovered, next]);
-
   return (
-    <section id="event" className="relative overflow-hidden bg-[#0A0F1F] py-24 sm:py-32">
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute top-0 left-1/4 h-80 w-80 rounded-full bg-cyan-600/[0.06] blur-[100px]" />
-      <div className="pointer-events-none absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-blue-600/[0.06] blur-[100px]" />
+    <section
+      id="event"
+      className="relative overflow-hidden py-28 sm:py-32 lg:py-40"
+      style={{ backgroundColor: '#000c25' }}
+    >
 
-      <div className="relative z-10 mx-auto max-w-[1540px] px-6 sm:px-10 lg:px-12">
-        {/* Two-column split – text left, gallery right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left – Text content */}
-          <div className="animate-fade-slide-in" style={{ '--slide-delay': '0.1s' } as React.CSSProperties}>
-            {/* Label */}
-            <div className="mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-              <span className="text-xs font-semibold tracking-[0.18em] text-cyan-300 uppercase">
-                THE EVENT WE HOST
-              </span>
+      <div className="relative z-10 mx-auto max-w-[1540px] px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
+          {/* LEFT: eyebrow first, then the logo as the identity mark, no redundant heading */}
+          <div className="lg:col-span-4 animate-fade-slide-in" style={{ '--slide-delay': '0.05s' } as React.CSSProperties}>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider" style={{ borderColor: '#C28C4F', backgroundColor: 'rgba(194, 140, 79, 0.15)', color: '#C28C4F' }}>
+              <span className="h-2 w-2 rounded-full" style={{ background: '#C28C4F' }} />
+              The event we host
             </div>
-            <h2 className="mt-5 text-4xl font-extrabold text-white sm:text-5xl lg:text-5xl tracking-tight">
-              LEAGUE OF CODERS
-            </h2>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-300 sm:text-xl">
-              The pinnacle of collegiate coding competition — the League of
-              Coders gathers top student talents from across the nation for an
-              ultimate test of grit, algorithmic prowess, and competitive
-              excellence. Compete, collaborate, and define your legacy.
+            <div className="relative w-full max-w-[400px] md:h-[15rem] -ml-2">
+              <Image
+                src="/images/league_of_coders_logo.png"
+                alt="League of Coders"
+                fill
+                className="object-contain object-left"
+                sizes="400px"
+                priority
+              />
+            </div>
+
+            <p className="text-base leading-relaxed max-w-sm mb-8" style={{ color: '#a3a3a3' }}>
+              Tunisia's premier competitive programming championship, uniting the country's sharpest algorithmic minds for a single day of high-stakes problem solving. Teams from top universities go head-to-head in timed rounds, racing to out-think and out-code one another for a shot at the national title.
             </p>
 
-            {/* Highlights */}
-            <div className="mt-7 flex flex-wrap gap-3">
-              {highlights.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-1.5 text-sm font-medium text-slate-300"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-9">
-              <Link
-                href="#league-of-coders"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold px-7 py-3 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 group"
-              >
-                Discover More
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-              </Link>
-            </div>
+            <Link
+              href="#contact"
+              className="inline-flex items-center gap-2.5 font-black text-sm px-7 py-3.5 rounded-lg transition-all duration-300 group uppercase tracking-wide border"
+              style={{
+                background: 'rgba(194, 140, 79, 0.1)',
+                borderColor: '#C28C4F',
+                color: '#C28C4F',
+              }}
+            >
+              Learn more
+              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            </Link>
           </div>
 
-          {/* Right – Image gallery */}
-          <div
-            className="relative animate-fade-slide-in"
-            style={{ '--slide-delay': '0.2s' } as React.CSSProperties}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div className="relative mx-auto max-w-md lg:max-w-none overflow-hidden rounded-3xl border border-white/[0.08] bg-slate-900/30 backdrop-blur-sm shadow-2xl shadow-black/40 group">
-              {/* Aspect ratio box matching image proportions */}
-              <div className="relative w-full" style={{ aspectRatio: '940 / 788' }}>
-                {images.map((src, index) => (
-                  <div
-                    key={src}
-                    className={`absolute inset-0 transition-opacity duration-700 ${
-                      index === current ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    <Image
-                      src={src}
-                      alt={`League of Coders — photo ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                      sizes="(max-width: 768px) 100vw, 400px"
-                    />
-                  </div>
-                ))}
-
-                {/* Navigation arrows */}
-                <button
-                  onClick={prev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button
-                  onClick={next}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={16} />
-                </button>
-
-                {/* Dot indicators */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
-                  {images.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                        i === current ? 'bg-white scale-125' : 'bg-white/40'
-                      }`}
-                      aria-label={`Go to image ${i + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+          {/* RIGHT: full-width mosaic using all 5 photos — one large anchor + 4 smaller */}
+          <div className="lg:col-span-8 animate-fade-slide-in" style={{ '--slide-delay': '0.2s' } as React.CSSProperties}>
+            <div className="mb-6">
+              <p className="text-[20px] font-bold uppercase tracking-[0.2em]" style={{ color: '#C28C4F' }}>Event Gallery</p>
+              <h3 className="text-5xl font-bold text-white mt-1.5">LEAGUE OF CODERS MOMENTS</h3>
             </div>
 
-            {/* Optional: subtle glow behind the card */}
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-blue-600/10 blur-xl -z-10" />
+            <div className="grid grid-cols-4 grid-rows-2 gap-5">
+              {/* Large anchor — same square ratio as the others, just spans 2x2 cells */}
+              <div
+                className="col-span-2 row-span-2 group relative overflow-hidden rounded-xl border bg-slate-900 aspect-square"
+                style={{ borderColor: 'rgba(194, 140, 79, 0.22)' }}
+              >
+                <Image
+                  src={images[0]}
+                  alt="League of Coders — championship moment 1"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, 40vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+
+              {/* 2x2 of remaining 4 photos, each the same square ratio */}
+              {images.slice(1).map((src, index) => (
+                <div
+                  key={src}
+                  className="col-span-1 row-span-1 group relative overflow-hidden rounded-xl border bg-slate-900 aspect-square"
+                  style={{ borderColor: 'rgba(194, 140, 79, 0.22)' }}
+                >
+                  <Image
+                    src={src}
+                    alt={`League of Coders — championship moment ${index + 2}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 50vw, 20vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -83,7 +83,7 @@ export default function Hero() {
           </Link>
 
           <Link
-            href="https://docs.google.com/forms/d/e/1FAIpQLScvUaWj3K0v0-nnBd1gLa1WIlwjf2vt6Du8Hum-trjAfMyEdw/closedform"
+            href="https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-base px-7 py-4 rounded-xl shadow-md shadow-black/10 transition-all duration-300"
           >
             Join our family

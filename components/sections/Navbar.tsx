@@ -76,7 +76,6 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href="https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I"
-                  onClick={handleNavClick('https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I', true)}
                   className="relative text-[16px] text-white/80 hover:text-white px-1 py-1.5 transition-all duration-300 group"
                 >
                   {link.label}
@@ -148,7 +147,6 @@ export default function Navbar() {
           <div className="pt-2 mt-1 border-t border-white/10">
             <Link
               href="https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I"
-              onClick={handleNavClick('https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I', true)}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 w-full shadow-sm shadow-black/10"
             >
               Join us <span aria-hidden="true">→</span>

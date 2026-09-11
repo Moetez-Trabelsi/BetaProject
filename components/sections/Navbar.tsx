@@ -12,8 +12,9 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
+// NOTE: replace YOUR_FORM_ID with your actual Google Form ID if this differs
 const joinUrl =
-  'https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I';
+  'https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I/viewform';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Navbar() {
           : Math.min(Math.max(window.innerHeight * 0.2, 88), 160);
 
       window.scrollTo({
-        top: Math.max(targetTop - preferredTopOffset / 5, 0),
+        top: Math.max(targetTop - preferredTopOffset, 0),
         behavior: 'smooth',
       });
 
@@ -203,3 +204,4 @@ export default function Navbar() {
       )}
     </nav>
   );
+}

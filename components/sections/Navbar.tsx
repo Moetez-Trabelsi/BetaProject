@@ -1,3 +1,4 @@
+```tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -12,41 +13,57 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
+const joinUrl =
+  'https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I';
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const handleNavClick = (href: string, closeMenu = false) => (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
+  const handleNavClick =
+    (href: string, closeMenu = false) =>
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
 
-    const target = document.getElementById(href.slice(1));
+      const target = document.getElementById(href.slice(1));
 
-    if (!target) {
-      return;
-    }
+      if (!target) {
+        return;
+      }
 
-    window.history.pushState(null, '', href);
+      window.history.pushState(null, '', href);
 
-    const targetTop = window.scrollY + target.getBoundingClientRect().top;
-    const preferredTopOffset = href === '#home' ? 0 : Math.min(Math.max(window.innerHeight * 0.2, 88), 160);
+      const targetTop =
+        window.scrollY + target.getBoundingClientRect().top;
 
-    window.scrollTo({
-      top: Math.max(targetTop - preferredTopOffset/5, 0),
-      behavior: 'smooth',
-    });
+      const preferredTopOffset =
+        href === '#home'
+          ? 0
+          : Math.min(Math.max(window.innerHeight * 0.2, 88), 160);
 
-    if (closeMenu) {
-      setMenuOpen(false);
-    }
-  };
+      window.scrollTo({
+        top: Math.max(targetTop - preferredTopOffset / 5, 0),
+        behavior: 'smooth',
+      });
+
+      if (closeMenu) {
+        setMenuOpen(false);
+      }
+    };
 
   useEffect(() => {
-    // Set initial scroll state on mount (handles refresh while scrolled)
+    // Set initial scroll state on mount
     setScrolled(window.scrollY > 10);
 
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
@@ -59,7 +76,11 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-[1840px] px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link href="#home" onClick={handleNavClick('#home')} className="flex items-center gap-2 shrink-0">
+        <Link
+          href="#home"
+          onClick={handleNavClick('#home')}
+          className="flex items-center gap-2 shrink-0"
+        >
           <Image
             src="/images/g2foss-logo.png"
             alt="G2FOSS"
@@ -69,7 +90,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop links */}
+        {/* Desktop navigation */}
         <div className="hidden md:flex items-center gap-10">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
@@ -80,38 +101,49 @@ export default function Navbar() {
                   className="relative text-[16px] text-white/80 hover:text-white px-1 py-1.5 transition-all duration-300 group"
                 >
                   {link.label}
+
                   <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full" />
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Join button – desktop (refined) */}
+          {/* Desktop Join button */}
           <div className="shrink-0">
-            <Link
-              href="https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I"
-              onClick={handleNavClick('https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I', true)}
+            <a
+              href={joinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center gap-2 group shadow-sm shadow-black/10"
             >
               Join us
+
               <span
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               >
-                {'->'}
+                →
               </span>
-            </Link>
+            </a>
           </div>
         </div>
 
         {/* Mobile hamburger */}
         <button
+          type="button"
           className="md:hidden text-white/80 p-2 rounded-lg hover:bg-white/5 transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? (
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
               <path
                 d="M4 4l12 12M16 4L4 16"
                 stroke="currentColor"
@@ -120,7 +152,13 @@ export default function Navbar() {
               />
             </svg>
           ) : (
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
               <path
                 d="M3 5h14M3 10h14M3 15h14"
                 stroke="currentColor"
@@ -145,17 +183,24 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          {/* Mobile Join button */}
           <div className="pt-2 mt-1 border-t border-white/10">
-            <Link
-              href="https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I"
-              onClick={handleNavClick('https://docs.google.com/forms/d/1mfgPkzkhW5nFbG_VSPHnJ-yDwaw0oud3xuaAvAfJJ_I', true)}
+            <a
+              href={joinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 w-full shadow-sm shadow-black/10"
             >
-              Join us <span aria-hidden="true">→</span>
-            </Link>
+              Join us
+
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
           </div>
         </div>
       )}
     </nav>
   );
-}
